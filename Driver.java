@@ -9,6 +9,7 @@ public class Driver
   public static final Firebase cdRef = fridgeRef.child("consecutiveDehydration");
   public static final Firebase lqRef = fridgeRef.child("liquidsConsumedToday");
   public static final Firebase dlrRef = fridgeRef.child("dailyLiquidsRecommended");
+  public static final Firebase alertRef = fridgeRef.child("alert");
 
   public static DataSnapshot uid = null;
   public static DataSnapshot liquidConsumedToday = null;
@@ -53,7 +54,8 @@ public class Driver
     testGetLiquidRecommendedValue();
     testIncrementConsecutiveDehydrationValueByOne();
     testBelowThreshold();
-
+    testNotifyEmergencyServices();
+    testNotNotifyEmergencyServices();
   };
 
   //---------- TEST CASES STARTS ----------//
@@ -95,9 +97,28 @@ public class Driver
 
   @Test
   public static void testBelowThreshold(){
+    // fail();
     System.out.println("Inside testBelowThreshold");
     assertTrue(belowThreshold());
   }
+
+  @Test
+  public static void testNotifyEmergencyServices(){
+    // fail();
+    System.out.println("Inside testNotifyEmergencyServices");
+    notifyEmergencyServices();
+    assertTrue(getAlert());
+  }
+
+  @Test
+  public static void testNotNotifyEmergencyServices(){
+    // fail();
+    System.out.println("Inside testNotNotifyEmergencyServices");
+    notNotifyEmergencyServices();
+    assertFalse(getAlert());
+  }
+
+
 
   //---------- TEST CASES ENDS ----------//
 
@@ -112,6 +133,9 @@ public class Driver
   public static int getDailyLiquidRecommendedValue(){
     return (int)((long) download(dlrRef).getValue());
   }
+  public static Boolean getAlert(){
+    return (Boolean)((Boolean) download(alertRef).getValue());
+  }
   public static void incrementConsecutiveDehydrationValueByOne(){
     int cdValue = getConsecutiveDehydrationValue();
     cdValue += 1;
@@ -119,6 +143,13 @@ public class Driver
   }
   public static Boolean belowThreshold(){
       return (getLiquidConsumedTodayValue() < getDailyLiquidRecommendedValue());
+  }
+  public static void notifyEmergencyServices(){
+    Boolean alert = getAlert();
+    alertRef.setValue(!alert);
+  }
+  public static void notNotifyEmergencyServices(){
+    alertRef.setValue(false);
   }
 
   //---------- FUNCTION ENDS ----------//
