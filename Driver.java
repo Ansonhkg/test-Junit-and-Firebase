@@ -53,7 +53,7 @@ public class Driver
     testGetLiquidConsumedTodayValue();
     testGetLiquidRecommendedValue();
     testIncrementConsecutiveDehydrationValueByOne();
-    testBelowThreshold();
+    testIsBelowThreshold();
     testNotifyEmergencyServices();
     testNotNotifyEmergencyServices();
   };
@@ -96,16 +96,16 @@ public class Driver
   }
 
   @Test
-  public static void testBelowThreshold(){
+  public static void testIsBelowThreshold(){
     // fail();
-    System.out.println("Inside testBelowThreshold");
-    assertTrue(belowThreshold());
+    System.out.println("Inside testBelowThreshold()");
+    assertTrue(isBelowThreshold());
   }
 
   @Test
   public static void testNotifyEmergencyServices(){
     // fail();
-    System.out.println("Inside testNotifyEmergencyServices");
+    System.out.println("Inside testNotifyEmergencyServices()");
     notifyEmergencyServices();
     assertTrue(getAlert());
   }
@@ -113,7 +113,7 @@ public class Driver
   @Test
   public static void testNotNotifyEmergencyServices(){
     // fail();
-    System.out.println("Inside testNotNotifyEmergencyServices");
+    System.out.println("Inside testNotNotifyEmergencyServices()");
     notNotifyEmergencyServices();
     assertFalse(getAlert());
   }
@@ -141,7 +141,7 @@ public class Driver
     cdValue += 1;
     cdRef.setValue(cdValue);
   }
-  public static Boolean belowThreshold(){
+  public static Boolean isBelowThreshold(){
       return (getLiquidConsumedTodayValue() < getDailyLiquidRecommendedValue());
   }
   public static void notifyEmergencyServices(){
