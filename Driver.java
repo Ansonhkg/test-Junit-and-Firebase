@@ -33,7 +33,7 @@ public class Driver
     //Check if consecutive dehydration value is consistently below threshold (for 3 days)
     if(getConsecutiveDehydrationValue()  >= 3){
 
-      System.out.println("Consecutive dehydration value is consistently below threshold");
+      System.out.println("Consecutive dehydration value is consistently below threshold for " + getConsecutiveDehydrationValue() + " days");
 
       //Notify emergency services (And beep)
       notifyEmergencyServices();
@@ -41,6 +41,8 @@ public class Driver
     }else{
       System.out.println("Mary is doing fine. :)");
     }
+
+    System.exit(0);
 
     // testGetConsecutiveDehydrationValue();
     // testGetLiquidConsumedTodayValue();
