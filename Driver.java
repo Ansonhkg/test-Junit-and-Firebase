@@ -41,6 +41,8 @@ public class Driver
     }else{
       System.out.println("Mary is doing fine. :)");
     }
+    //Reset liquid consumed today
+    resetLiquidConsumedToday();
 
     System.exit(0);
 
@@ -51,6 +53,7 @@ public class Driver
     // testIsBelowThreshold();
     // testNotifyEmergencyServices();
     // testNotNotifyEmergencyServices();
+    // testResetLiquidConsumedToday();
 
   };
 
@@ -113,6 +116,13 @@ public class Driver
     assertFalse(getAlert());
   }
 
+  @Test
+  public static void testResetLiquidConsumedToday(){
+    //fail();
+    System.out.println("Inside testResetLiquidConsumedToday()");
+    assertEquals(0, getLiquidConsumedTodayValue());
+  }
+
 
 
   //---------- TEST CASES ENDS ----------//
@@ -145,6 +155,9 @@ public class Driver
   }
   public static void notNotifyEmergencyServices(){
     alertRef.setValue(false);
+  }
+  public static void resetLiquidConsumedToday(){
+    lqRef.setValue(0);
   }
 
   //---------- FUNCTION ENDS ----------//
