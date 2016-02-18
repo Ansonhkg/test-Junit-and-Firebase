@@ -19,15 +19,27 @@ public class Driver
 
     //Check if daily liquid intake is below threshold
     if(getLiquidConsumedTodayValue() < getDailyLiquidRecommendedValue()){
+      System.out.println("Daily liquid intake is below threshold");
+      System.out.println("Consumed today: " + getLiquidConsumedTodayValue());
+      System.out.println("Recommended: " + getDailyLiquidRecommendedValue());
+
       incrementConsecutiveDehydrationValueByOne();
+    }else{
+      System.out.println("Daily liquid intake is above threshold");
+      System.out.println("Consumed today: " + getLiquidConsumedTodayValue());
+      System.out.println("Recommended: " + getDailyLiquidRecommendedValue());
     }
 
     //Check if consecutive dehydration value is consistently below threshold (for 3 days)
     if(getConsecutiveDehydrationValue()  >= 3){
 
+      System.out.println("Consecutive dehydration value is consistently below threshold");
+
       //Notify emergency services (And beep)
       notifyEmergencyServices();
-
+      System.out.println("Emergency notified.");
+    }else{
+      System.out.println("Mary is doing fine. :)");
     }
 
     // testGetConsecutiveDehydrationValue();
