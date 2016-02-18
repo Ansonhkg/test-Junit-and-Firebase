@@ -17,45 +17,27 @@ public class Driver
 
   public static void main(String args[]){
 
-    // while(true){
-    //   uid = download(cdRef);
-    //   dailyLiquidRecommended = download(lqRef);
-    //   liquidConsumedToday = download(dlrRef);
-    //
-    //   int cdValue = (int)((long) uid.getValue());
-    //   int liquidConsumedTodayValue = (int)((long) liquidConsumedToday.getValue());
-    //   int dailyLiquidRecommendedValue = (int)((long) dailyLiquidRecommended.getValue());
-    //
-    //   //Check if daily liquid intake is below threshold (If lquidConsumedToday is less than dailyLiquidRecommendedValue)
-    //   if(liquidConsumedTodayValue < dailyLiquidRecommendedValue){
-    //
-    //       //Increment consecutive dehydration value by 1
-    //       cdValue += 1;
-    //
-    //       //Save value to Firebase
-    //
-    //   }
-    //   System.out.println(dailyLiquidRecommendedValue);
-    //   System.out.println(liquidConsumedTodayValue);
-    //
-    //   if(cdValue >= 3){
-    //
-    //     //Notify emergency services
-    //     System.out.println("Consecutive Dehydration value is greater than and equals to 3");
-    //
-    //     //Enables alarm
-    //       //And beep
-    //     System.exit(0);
-    //   }
-    //
-    // }
-    testGetConsecutiveDehydrationValue();
-    testGetLiquidConsumedTodayValue();
-    testGetLiquidRecommendedValue();
-    testIncrementConsecutiveDehydrationValueByOne();
-    testIsBelowThreshold();
-    testNotifyEmergencyServices();
-    testNotNotifyEmergencyServices();
+    //Check if daily liquid intake is below threshold
+    if(getLiquidConsumedTodayValue() < getDailyLiquidRecommendedValue()){
+      incrementConsecutiveDehydrationValueByOne();
+    }
+
+    //Check if consecutive dehydration value is consistently below threshold (for 3 days)
+    if(getConsecutiveDehydrationValue()  >= 3){
+
+      //Notify emergency services (And beep)
+      notifyEmergencyServices();
+
+    }
+
+    // testGetConsecutiveDehydrationValue();
+    // testGetLiquidConsumedTodayValue();
+    // testGetLiquidRecommendedValue();
+    // testIncrementConsecutiveDehydrationValueByOne();
+    // testIsBelowThreshold();
+    // testNotifyEmergencyServices();
+    // testNotNotifyEmergencyServices();
+
   };
 
   //---------- TEST CASES STARTS ----------//
@@ -91,7 +73,6 @@ public class Driver
     int oldValue = getConsecutiveDehydrationValue();
     incrementConsecutiveDehydrationValueByOne();
     int newValue = getConsecutiveDehydrationValue();
-    // System.out.println("Comparing old value " + oldValue + " to new value " + newValue);
     assertTrue(newValue > oldValue);
   }
 
